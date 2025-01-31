@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 0 0% 98%;
+    --card: 222 47% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 186 100% 50%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 271 100% 58%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 186 100% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 223 47% 11%;
+    --input: 223 47% 11%;
+    --ring: 186 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .glow {
+    @apply relative;
+  }
+  
+  .glow::after {
+    @apply content-[''] absolute inset-0 -z-10 blur-xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
+  }
+  
+  .glow:hover::after {
+    @apply opacity-20;
+  }
+  
+  .geometric-background {
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    animation: background-rotate 20s linear infinite;
+    pointer-events: none;
+  }
+
+  .geometric-shape {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, hsl(var(--primary)) 30%, transparent);
+    left: var(--x);
+    top: var(--y);
+    animation: shape-float 5s ease-in-out infinite;
+    animation-delay: var(--delay);
+    opacity: 0.1;
+    transform: rotate(var(--rotation)) scale(var(--scale));
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+}
+
+@keyframes background-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shape-float {
+  0%, 100% {
+    transform: rotate(var(--rotation)) scale(var(--scale)) translateY(0);
+  }
+  50% {
+    transform: rotate(calc(var(--rotation) + 10deg)) scale(var(--scale)) translateY(-20px);
+  }
+}
+
+.section-padding {
+  @apply px-6 md:px-8 lg:px-12 py-16 md:py-24;
+}
+
+.container-width {
+  @apply max-w-7xl mx-auto;
+}
