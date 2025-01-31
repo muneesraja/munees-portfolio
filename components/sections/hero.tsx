@@ -68,8 +68,15 @@ export default function Hero() {
             >
               Explore Work <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button size="lg" variant="outline" className="glow">
-              Connect
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="glow"
+              asChild
+            >
+              <Link href="/PDFs/Resume_OLD.pdf" target="_blank" rel="noopener noreferrer">
+                View CV
+              </Link>
             </Button>
           </motion.div>
 
